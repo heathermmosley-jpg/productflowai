@@ -4,43 +4,99 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request Tool | ProductFlowAI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .input-field { background: #1e293b; border: 1px solid #334155; }
+        .hidden { display: none; }
+    </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen">
-    <nav class="p-6"><a href="index.html" class="text-slate-500 font-bold">← Back to Panel</a></nav>
-    <main class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
-        
-        <div class="lg:col-span-1 space-y-6">
-            <h1 class="text-4xl font-black text-white">Custom Tool Request</h1>
-            <p class="text-slate-400 leading-relaxed">Can't find the specific system you need? We build custom workflows, tracking tools, and digital systems tailored to your specific problem.</p>
-            <div class="p-6 bg-slate-800/50 border border-slate-700 rounded-2xl">
-                <h4 class="font-bold text-blue-400 mb-2 tracking-widest uppercase text-xs">The Process</h4>
-                <p class="text-sm text-slate-500">Submit your request. We review the scope. You receive a custom build quote via email within 48 hours.</p>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <nav class="p-6 max-w-7xl mx-auto w-full flex justify-between items-center">
+        <a href="index.html" class="text-sm font-bold text-slate-500 hover:text-blue-400 transition-colors">← Back to Control Panel</a>
+        <div class="text-[10px] font-mono text-blue-500 uppercase tracking-widest">Secure Transmission Active</div>
+    </nav>
+
+    <main class="flex-grow px-6 pb-24">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8">
+            
+            <div class="lg:col-span-1 space-y-6">
+                <h1 class="text-3xl font-black text-white">Custom Tool Request</h1>
+                <p class="text-slate-400 text-sm leading-relaxed">Submit your specific workflow challenge. Our architects will review the logic and provide a custom build scope within 48 business hours.</p>
+                
+                <div class="p-5 bg-blue-600/10 border border-blue-500/20 rounded-2xl">
+                    <h4 class="text-xs font-bold text-blue-400 uppercase mb-2">Build Queue Status</h4>
+                    <p class="text-xs text-slate-400">Currently accepting 3 new custom builds for April 2026.</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                
+                <div id="success-dashboard" class="hidden bg-slate-800 border border-blue-500/30 p-10 rounded-3xl text-center shadow-2xl">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white mb-2">Request Logged Successfully</h2>
+                    <p class="text-slate-400 mb-8 max-w-sm mx-auto">Your build requirements have been sent to the vault. While you wait for our review, we recommend establishing a baseline routine.</p>
+                    
+                    <div class="bg-blue-600/20 p-6 rounded-2xl mb-8 border border-blue-500/20">
+                        <h4 class="text-blue-400 font-bold text-sm mb-1 uppercase tracking-tight">Suggested Relief System</h4>
+                        <p class="text-white text-sm mb-4 italic">"The CRPS Reset Protocol is the best foundation for any custom build."</p>
+                        <a href="crps.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition-all">Explore Protocol →</a>
+                    </div>
+                    
+                    <a href="index.html" class="text-slate-500 text-xs hover:text-white transition-colors underline uppercase tracking-widest">Return to Dashboard</a>
+                </div>
+
+                <form id="tool-form" action="https://formspree.io/f/mzdkkjno" method="POST" class="space-y-6 bg-slate-800/80 p-8 rounded-3xl border border-slate-700 shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" name="name" required placeholder="Name" class="w-full p-4 rounded-xl input-field text-white outline-none focus:border-blue-500 transition-all">
+                        <input type="email" name="email" required placeholder="Email" class="w-full p-4 rounded-xl input-field text-white outline-none focus:border-blue-500 transition-all">
+                    </div>
+                    <input type="text" name="problem" required placeholder="Primary Challenge (e.g., Morning Mobility Tracking)" class="w-full p-4 rounded-xl input-field text-white outline-none focus:border-blue-500 transition-all">
+                    <textarea name="description" rows="5" required placeholder="Detailed description of the tool or routine you need..." class="w-full p-4 rounded-xl input-field text-white outline-none focus:border-blue-500 transition-all resize-none"></textarea>
+                    
+                    <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl text-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-900/40">
+                        Submit Build Request
+                    </button>
+                    <p id="error-msg" class="hidden text-red-400 text-center text-sm font-bold mt-4 italic">Connection error. Please check your signal and try again.</p>
+                </form>
             </div>
         </div>
-
-        <div class="lg:col-span-2">
-            <form action="https://formspree.io/f/mzdkkjno" method="POST" class="bg-slate-800 p-8 rounded-3xl border border-slate-700 space-y-6 shadow-2xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Name</label>
-                        <input type="text" name="name" required placeholder="John Doe" class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email</label>
-                        <input type="email" name="email" required placeholder="john@example.com" class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all">
-                    </div>
-                </div>
-                <div class="space-y-2">
-                    <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">The Goal</label>
-                    <input type="text" name="subject" required placeholder="What problem are we solving?" class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all">
-                </div>
-                <div class="space-y-2">
-                    <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Details</label>
-                    <textarea name="message" rows="6" required placeholder="Describe the workflow or tool you have in mind..." class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all resize-none"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-5 rounded-2xl font-black text-lg shadow-lg shadow-blue-900/40 transition-all transform hover:-translate-y-1">Submit Request to ProductFlowAI</button>
-            </form>
-        </div>
     </main>
+
+    <footer class="p-8 border-t border-slate-800 text-center text-slate-500 text-[10px] uppercase tracking-[0.2em]">
+        ProductFlowAI Architecture // Legacy Pro Vault
+    </footer>
+
+    <script>
+        const form = document.getElementById("tool-form");
+        const successDashboard = document.getElementById("success-dashboard");
+        const submitBtn = document.getElementById("submit-btn");
+        const errorMsg = document.getElementById("error-msg");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = "TRANSMITTING DATA...";
+
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.classList.add("hidden");
+                successDashboard.classList.remove("hidden");
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "RETRY SUBMISSION";
+                errorMsg.classList.remove("hidden");
+            }
+        });
+    </script>
+
 </body>
 </html>
