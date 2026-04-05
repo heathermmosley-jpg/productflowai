@@ -2,19 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Request | ProductFlowAI</title>
+    <title>Request Tool | ProductFlowAI</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-900 text-white">
-    <nav class="p-6"><a href="index.html" class="text-slate-500">← Back</a></nav>
-    <main class="max-w-2xl mx-auto py-10 px-6">
-        <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
-            <h1 class="text-3xl font-bold mb-8">Request a Custom Tool</h1>
-            <form action="https://formspree.io/f/mzdkkjno" method="POST" class="space-y-6">
-                <input type="text" name="name" required placeholder="Your Name" class="w-full p-4 rounded-xl bg-slate-700 border-none">
-                <input type="email" name="email" required placeholder="Your Email" class="w-full p-4 rounded-xl bg-slate-700 border-none">
-                <textarea name="request" rows="5" required placeholder="What do you need built?" class="w-full p-4 rounded-xl bg-slate-700 border-none"></textarea>
-                <button type="submit" class="w-full bg-blue-600 py-4 rounded-xl font-bold text-lg">Send Request</button>
+<body class="bg-slate-900 text-white min-h-screen">
+    <nav class="p-6"><a href="index.html" class="text-slate-500 font-bold">← Back to Panel</a></nav>
+    <main class="max-w-5xl mx-auto py-12 px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+        
+        <div class="lg:col-span-1 space-y-6">
+            <h1 class="text-4xl font-black text-white">Custom Tool Request</h1>
+            <p class="text-slate-400 leading-relaxed">Can't find the specific system you need? We build custom workflows, tracking tools, and digital systems tailored to your specific problem.</p>
+            <div class="p-6 bg-slate-800/50 border border-slate-700 rounded-2xl">
+                <h4 class="font-bold text-blue-400 mb-2 tracking-widest uppercase text-xs">The Process</h4>
+                <p class="text-sm text-slate-500">Submit your request. We review the scope. You receive a custom build quote via email within 48 hours.</p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2">
+            <form action="https://formspree.io/f/mzdkkjno" method="POST" class="bg-slate-800 p-8 rounded-3xl border border-slate-700 space-y-6 shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Name</label>
+                        <input type="text" name="name" required placeholder="John Doe" class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Email</label>
+                        <input type="email" name="email" required placeholder="john@example.com" class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">The Goal</label>
+                    <input type="text" name="subject" required placeholder="What problem are we solving?" class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-slate-500 uppercase tracking-widest ml-1">Details</label>
+                    <textarea name="message" rows="6" required placeholder="Describe the workflow or tool you have in mind..." class="w-full p-4 rounded-xl bg-slate-900 border-none text-white focus:ring-2 focus:ring-blue-500 transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-5 rounded-2xl font-black text-lg shadow-lg shadow-blue-900/40 transition-all transform hover:-translate-y-1">Submit Request to ProductFlowAI</button>
             </form>
         </div>
     </main>
